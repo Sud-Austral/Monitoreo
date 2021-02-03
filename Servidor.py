@@ -2,6 +2,7 @@ import requests
 import pandas as pd
 from datetime import datetime
 import time
+import git
 
 def Disponibilidad(url):
     r = requests.get(url)
