@@ -39,7 +39,7 @@ def URLCriticas():
 def Update():
     salida = []
 
-    for i in urlCriticas:
+    for i in URLCriticas():
         salida.append(DiccionarioLink(i).copy())
 
     data = pd.DataFrame(salida)
