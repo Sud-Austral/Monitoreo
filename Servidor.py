@@ -54,7 +54,7 @@ def Update():
     return
 
 def guardarRepositorio():
-    repoLocal = git.Repo(r'C:\Users\datos\Documents\GitHub\DATA-AGRO')
+    repoLocal = git.Repo(r'C:\Users\datos\Documents\GitHub\Monitoreo')
     try:
         for remote in repoLocal.remotes:
             remote.fetch()
