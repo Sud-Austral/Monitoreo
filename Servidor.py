@@ -1,6 +1,6 @@
 import requests
 import pandas as pd
-from datetime import datetime
+#from datetime import datetime
 import time
 import git
 import datetime
@@ -45,7 +45,7 @@ def Update():
         salida.append(DiccionarioLink(i).copy())
 
     data = pd.DataFrame(salida)
-    data["Fecha"] = datetime.now()
+    data["Fecha"] = datetime.datetime.now()
     dataGeneral = pd.read_excel("Disponibilidad.xlsx")
     dataGeneral = pd.concat([dataGeneral,data])
     dataGeneral.to_excel("Disponibilidad.xlsx", index=False)
