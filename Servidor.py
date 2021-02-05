@@ -16,8 +16,19 @@ def DisponibilidadNombre(url):
         return "Disponible"
     return "No Disponible"
 
+def ultimoElemento(nombre):
+    dataAux = pd.read_csv("https://github.com/Sud-Austral/Monitoreo/raw/main/Disponibilidad.csv")
+    return dataAux[dataAux["URL"] == nombre].sort_values("Fecha",ascending=False).iloc[0]
+    
+def UltimoDisponible(nombre,estado):
+    ultimoRegistro = ultimoElemento(nombre)
+    if(estado != ultimoRegistro["Disponibilidad"]):
+        return datetime.now()
+    return None
+
 def DiccionarioLink(link):
-    return {"Nombre":link[0],"URL":link[1],"Disponibilidad":DisponibilidadNombre(link[1])}
+    return {"Nombre":link[0],"URL":link[1],"Disponibilidad":DisponibilidadNombre(link[1]),"Ultimo":UltimoDisponible(link[1],DisponibilidadNombre(link[1]))}
+
 
 def URLCriticas():
     urlCriticas = [
@@ -50,7 +61,7 @@ def Update():
     dataGeneral = pd.concat([dataGeneral,data])
     dataGeneral.to_excel("Disponibilidad.xlsx", index=False)
     dataGeneral.to_csv("Disponibilidad.csv",index=False)
-    dataActualizado = dataGeneral.tail(36)[::-1]
+    dataActualizado = dataGeneral.tail(len(URLCriticas()) * 3)[::-1]
     dataActualizado.to_excel("DisponibilidadActualizado.xlsx", index=False)
     dataActualizado.to_csv("DisponibilidadActualizado.csv",index=False)
     return
