@@ -23,7 +23,7 @@ def ultimoElemento(nombre):
 def UltimoDisponible(nombre,estado):
     ultimoRegistro = ultimoElemento(nombre)
     if(estado != ultimoRegistro["Disponibilidad"]):
-        return datetime.now()
+        return datetime.datetime.now()
     return None
 
 def DiccionarioLink(link):
